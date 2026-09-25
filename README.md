@@ -1,28 +1,86 @@
-# HƯỚNG DẪN CHẠY ỨNG DỤNG (Dành cho Người Dùng)
+TodoCS
 
-Ứng dụng đã được đóng gói hoàn chỉnh. Bạn **KHÔNG CẦN** cài đặt .NET hay bất kỳ phần mềm nào khác.
+Ứng dụng Todo được viết bằng C# / .NET 10.
+
+📦 Dành cho người dùng Windows
+
+Sau khi build, thư mục gửi cho người dùng Windows:
+
+bin/Release/net10.0/win-x64/publish/
+
+Người dùng chỉ cần nhấn đúp vào file:
+
+bin/Release/net10.0/win-x64/publish/todoCS.exe
+
+Không cần cài .NET vì ứng dụng được build theo chế độ self-contained.
 
 ---
 
-### 🪟 DÀNH CHO NGƯỜI DÙNG WINDOWS
+🛠️ Dành cho người phát triển
 
-* **File cần mở:** `todoCS.exe`
+Build bản Windows
 
-**Cách chạy:**
-1. Nhấp đôi chuột (double-click) trực tiếp vào file **`todoCS.exe`** để mở và sử dụng ngay.
+dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true
+
+File sau khi build:
+
+bin/Release/net10.0/win-x64/publish/
+
+Build bản Linux
+
+dotnet publish -c Release -r linux-x64 --self-contained true -p:PublishSingleFile=true
+
+File sau khi build:
+
+bin/Release/net10.0/linux-x64/publish/
 
 ---
 
-### 🐧 DÀNH CHO NGƯỜI DÙNG LINUX
+🚀 Build và cập nhật nhanh bằng Linux
 
-* **File cần mở:** `todoCS`
+1. Tạo file "build.sh"
 
-**Cách 1: Mở bằng Giao diện (GUI)**
-1. Nhấp chuột phải vào file **`todoCS`** -> Chọn **Properties** -> Sang tab **Permissions** -> Tích chọn **"Allow executing file as program"** (Cho phép chạy dưới dạng chương trình).
-2. Nhấp đôi chuột vào file **`todoCS`** để chạy.
+nano build.sh
 
-**Cách 2: Mở bằng Terminal**
-1. Mở Terminal tại thư mục chứa file và chạy lệnh:
-   ```bash
-   chmod +x todoCS
-   ./todoCS
+Dán nội dung sau:
+
+#!/bin/bash
+
+echo "Đang build file cho Windows..."
+dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true
+
+echo "Đang build file cho Linux..."
+dotnet publish -c Release -r linux-x64 --self-contained true -p:PublishSingleFile=true
+
+echo ""
+echo "Build hoàn tất!"
+echo "File Windows: bin/Release/net*/win-x64/publish/"
+echo "File Linux:   bin/Release/net*/linux-x64/publish/"
+
+2. Cấp quyền thực thi
+
+chmod +x build.sh
+
+3. Cập nhật code và build
+
+Mỗi khi sửa code xong, chạy:
+
+./build.sh
+
+Script sẽ tự động build cả:
+
+- 🪟 Windows: "win-x64"
+- 🐧 Linux: "linux-x64"
+
+📁 Cấu trúc file sau khi build
+
+bin/
+└── Release/
+    └── net10.0/
+        ├── win-x64/
+        │   └── publish/
+        │       └── todoCS.exe
+        │
+        └── linux-x64/
+            └── publish/
+                └── todoCS
