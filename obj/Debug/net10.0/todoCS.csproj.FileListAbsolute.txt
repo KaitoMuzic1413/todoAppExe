@@ -78,7 +78,6 @@
 /home/redhat/Documents/workPlace/todoCS/bin/Debug/net10.0/runtimes/win-x86/native/libSkiaSharp.pdb
 /home/redhat/Documents/workPlace/todoCS/obj/Debug/net10.0/todoCS.csproj.AssemblyReference.cache
 /home/redhat/Documents/workPlace/todoCS/obj/Debug/net10.0/Avalonia/Resources.Inputs.cache
-/home/redhat/Documents/workPlace/todoCS/obj/Debug/net10.0/Avalonia/resources
 /home/redhat/Documents/workPlace/todoCS/obj/Debug/net10.0/todoCS.GeneratedMSBuildEditorConfig.editorconfig
 /home/redhat/Documents/workPlace/todoCS/obj/Debug/net10.0/todoCS.AssemblyInfoInputs.cache
 /home/redhat/Documents/workPlace/todoCS/obj/Debug/net10.0/todoCS.AssemblyInfo.cs
@@ -89,3 +88,4 @@
 /home/redhat/Documents/workPlace/todoCS/obj/Debug/net10.0/todoCS.pdb
 /home/redhat/Documents/workPlace/todoCS/obj/Debug/net10.0/todoCS.genruntimeconfig.cache
 /home/redhat/Documents/workPlace/todoCS/obj/Debug/net10.0/ref/todoCS.dll
+/home/redhat/Documents/workPlace/todoCS/obj/Debug/net10.0/todoCS.sourcelink.json
