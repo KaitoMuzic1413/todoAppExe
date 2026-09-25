@@ -1,24 +1,28 @@
-# Todo App (.NET C#)
+# HƯỚNG DẪN CHẠY ỨNG DỤNG (Dành cho Người Dùng)
 
-Hướng dẫn chi tiết cách chạy ứng dụng ở chế độ phát triển (Development) và cách đóng gói, bàn giao ứng dụng cho người dùng cuối trên các hệ điều hành khác nhau.
-
----
-
-## 1. Yêu cầu hệ thống
-
-* **Người phát triển (Developer):** Cần cài đặt **.NET 10.0 SDK** để chạy mã nguồn và publish ứng dụng.
-* **Người dùng cuối (End-User):**
-  * Do ứng dụng được publish dạng `--self-contained false` (phụ thuộc vào runtime), người dùng cần cài đặt sẵn **.NET 10.0 Runtime** trên máy.
+Ứng dụng đã được đóng gói hoàn chỉnh. Bạn **KHÔNG CẦN** cài đặt .NET hay bất kỳ phần mềm nào khác.
 
 ---
 
-## 2. Dành cho Lập trình viên (Chạy Source Code)
+### 🪟 DÀNH CHO NGƯỜI DÙNG WINDOWS
 
-Nếu bạn muốn chạy ứng dụng trực tiếp từ mã nguồn:
+* **File cần mở:** `todoCS.exe`
 
-```bash
-# Di chuyển tới thư mục dự án
-cd /home/redhat/Documents/workPlace/todoCS
+**Cách chạy:**
+1. Nhấp đôi chuột (double-click) trực tiếp vào file **`todoCS.exe`** để mở và sử dụng ngay.
 
-# Chạy ứng dụng
-dotnet run
+---
+
+### 🐧 DÀNH CHO NGƯỜI DÙNG LINUX
+
+* **File cần mở:** `todoCS`
+
+**Cách 1: Mở bằng Giao diện (GUI)**
+1. Nhấp chuột phải vào file **`todoCS`** -> Chọn **Properties** -> Sang tab **Permissions** -> Tích chọn **"Allow executing file as program"** (Cho phép chạy dưới dạng chương trình).
+2. Nhấp đôi chuột vào file **`todoCS`** để chạy.
+
+**Cách 2: Mở bằng Terminal**
+1. Mở Terminal tại thư mục chứa file và chạy lệnh:
+   ```bash
+   chmod +x todoCS
+   ./todoCS
