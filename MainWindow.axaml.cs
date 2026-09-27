@@ -5,6 +5,7 @@ using Avalonia.Input;
 using Avalonia.Layout;
 using Avalonia.Media;
 using System.Globalization;
+using System.Linq;
 
 namespace todoCS;
 
@@ -38,7 +39,7 @@ public partial class MainWindow : Window
 
     public MainWindow()
     {
-        Title = "What you want to do ?";
+        Title = "What do you want to do ?";
         Width = 700;
         Height = 700;
         MinWidth = 520;
@@ -180,6 +181,7 @@ public partial class MainWindow : Window
         if (editingTask is null) repository.Add(title);
         else repository.Update(editingTask, title);
         CancelEdit();
+        searchInput.Clear();
         RefreshTasks();
         taskInput.Focus();
     }
@@ -212,7 +214,7 @@ public partial class MainWindow : Window
     private void RefreshTasks()
     {
         var matches = repository.Search(searchInput?.Text ?? "");
-        taskItems.ItemsSource = matches;
+        taskItems.ItemsSource = matches.ToList();
         countLabel.Text = $"{matches.Count} tasks";
         emptyLabel.IsVisible = matches.Count == 0;
         emptyLabel.Text = repository.Tasks.Count == 0 ? "No tasks available." : "No tasks found.";

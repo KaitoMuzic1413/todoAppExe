@@ -5,6 +5,7 @@ using System.Globalization;
 using System.IO;
 using System.Text;
 using System.Text.Json;
+using System.Collections.ObjectModel;
 
 namespace todoCS;
 
@@ -17,7 +18,7 @@ public sealed class TodoTaskRepository
 
     public TodoTaskRepository() => Load();
 
-    public List<TodoTask> Tasks { get; } = new();
+    public ObservableCollection<TodoTask> Tasks { get; } = new();
 
     public void Add(string title)
     {
@@ -69,7 +70,11 @@ public sealed class TodoTaskRepository
         {
             if (!File.Exists(dataFile)) return;
             var tasks = JsonSerializer.Deserialize<List<TodoTask>>(File.ReadAllText(dataFile));
-            if (tasks is not null) Tasks.AddRange(tasks.Where(task => !string.IsNullOrWhiteSpace(task.Title)));
+            if (tasks is not null)
+            {
+                foreach (var task in tasks.Where(task => !string.IsNullOrWhiteSpace(task.Title)))
+                    Tasks.Add(task);
+            }
         }
         catch (IOException) { }
         catch (UnauthorizedAccessException) { }

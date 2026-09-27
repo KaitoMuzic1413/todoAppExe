@@ -20,20 +20,26 @@ todoCS.exe
 
 ## Dành cho người dùng Linux
 
-Thư mục gửi cho người dùng Linux:
+Gửi **nguyên thư mục** publish này cho người dùng Linux (không gửi riêng file `todoCS`):
 
 ```text
 bin/Release/net10.0/linux-x64/publish/
 ```
 
-Mở Terminal tại thư mục `publish` và chạy:
+Máy đích cần Linux **x86-64** và một phiên desktop có giao diện đồ họa (Avalonia dùng X11 mặc định). Trên Ubuntu/Debian, cài thư viện hệ thống nếu máy chưa có:
 
 ```bash
-chmod +x todoCS
-./todoCS
+sudo apt update
+sudo apt install -y libx11-6 libice6 libsm6 libfontconfig1
 ```
 
-> Bản Linux được build dưới dạng **self-contained**, vì vậy người dùng không cần cài .NET để chạy ứng dụng.
+Sau khi chép và giải nén nguyên thư mục publish, mở Terminal tại đó và chạy:
+
+```bash
+bash run-todoCS.sh
+```
+
+> Bản Linux là **self-contained**, không cần cài .NET. Máy vẫn cần các thư viện Linux và môi trường desktop ở trên. Nếu nhấp đúp không mở được, chạy lệnh trong Terminal để xem lỗi.
 
 ---
 
@@ -115,13 +121,13 @@ bin/Release/net10.0/win-x64/publish/todoCS.exe
 Build bản Linux:
 
 ```bash
-dotnet publish -c Release -r linux-x64 --self-contained true -p:PublishSingleFile=true
+dotnet publish -c Release -r linux-x64 --self-contained true
 ```
 
-File sau khi build:
+Gửi **toàn bộ thư mục** sau khi build để giữ các native assets Avalonia đi kèm:
 
 ```text
-bin/Release/net10.0/linux-x64/publish/todoCS
+bin/Release/net10.0/linux-x64/publish/
 ```
 
 ---
@@ -143,12 +149,20 @@ echo "Đang build file cho Windows..."
 dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true
 
 echo "Đang build file cho Linux..."
-dotnet publish -c Release -r linux-x64 --self-contained true -p:PublishSingleFile=true
+dotnet publish -c Release -r linux-x64 --self-contained true
 
 echo ""
 echo "Build hoàn tất!"
 echo "File Windows: bin/Release/net10.0/win-x64/publish/"
 echo "File Linux:   bin/Release/net10.0/linux-x64/publish/"
+cat > bin/Release/net10.0/linux-x64/publish/run-todoCS.sh <<'EOF'
+#!/usr/bin/env bash
+set -e
+cd "$(dirname "$(readlink -f "$0")")"
+chmod +x ./todoCS
+exec ./todoCS "$@"
+EOF
+chmod +x bin/Release/net10.0/linux-x64/publish/run-todoCS.sh
 ```
 
 ### 2. Cấp quyền thực thi
