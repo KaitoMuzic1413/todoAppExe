@@ -6,8 +6,9 @@ using Avalonia.Layout;
 using Avalonia.Media;
 using System.Globalization;
 using System.Linq;
+using todoCS.Backend;
 
-namespace todoCS;
+namespace todoCS.Frontend;
 
 public partial class MainWindow : Window
 {

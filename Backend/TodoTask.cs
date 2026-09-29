@@ -1,6 +1,6 @@
 using System;
 
-namespace todoCS;
+namespace todoCS.Backend;
 
 public sealed class TodoTask
 {

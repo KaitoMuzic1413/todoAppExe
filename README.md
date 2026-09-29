@@ -2,6 +2,12 @@
 
 Ứng dụng Todo được viết bằng **C# / .NET 10**.
 
+## Cấu trúc mã nguồn
+
+- `Frontend/`: cửa sổ và phần giao diện Avalonia.
+- `Backend/`: model task và repository lưu/đọc dữ liệu.
+- `App.axaml.cs`, `Program.cs`: cấu hình và khởi chạy ứng dụng.
+
 ## Dành cho người dùng Windows
 
 Thư mục gửi cho người dùng Windows:

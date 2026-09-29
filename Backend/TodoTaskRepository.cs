@@ -7,7 +7,7 @@ using System.Text;
 using System.Text.Json;
 using System.Collections.ObjectModel;
 
-namespace todoCS;
+namespace todoCS.Backend;
 
 /// <summary>Stores tasks locally and provides basic task operations.</summary>
 public sealed class TodoTaskRepository
